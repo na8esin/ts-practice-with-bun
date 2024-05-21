@@ -25,3 +25,5 @@ const s2: student2 = {
 const s3: student2 = {
   id: '1234'
 } // Error: Property 'major' is missing in type '{ id: string; }' but required in type 'student2'.
+
+
