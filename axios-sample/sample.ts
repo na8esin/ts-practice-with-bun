@@ -6,15 +6,12 @@ type User = {
 };
 
 type FetchUserResponse = {
-  status: number | null;
+  status?: number;
   data: User | null;
   error: unknown | null;
 };
 
-async function fetchUser(
-  handleAxiosError: (error: axios.AxiosError<any, any>) => {},
-  handleUnexpectedError: (error: unknown) => {}
-): Promise<FetchUserResponse | null> {
+async function fetchUser(): Promise<FetchUserResponse | null> {
   try {
     const { data, status } = await axios.get<User>("/user?ID=12345");
     return { data, status, error: null };
@@ -22,8 +19,7 @@ async function fetchUser(
     if (axios.isAxiosError(error)) {
       return { data: null, status: error?.status, error: null };
     } else {
-      handleUnexpectedError(error);
+      throw error;
     }
   }
-  return null;
 }
