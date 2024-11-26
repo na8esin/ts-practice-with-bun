@@ -8,7 +8,7 @@ const response: UserResponse = {
 };
 
 // 存在しないプロパティにアクセスしてもエラーになったりしないか
-if(!!response.status) {
+if(response.status === 401) {
   console.log(`status exists=${!!response.status}`);
 } else {
   console.log(`status does not exist=${!!response.status}`);
