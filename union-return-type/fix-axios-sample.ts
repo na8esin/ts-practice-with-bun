@@ -9,16 +9,17 @@ type FetchUserResponse =
   | {
       status?: number;
       error: unknown | null;
+      type: "Failure";
     }
-  | { status?: number; data: User };
+  | { status?: number; data: User; type: "Success" };
 
 async function fetchUser(): Promise<FetchUserResponse | null> {
   try {
     const { data, status } = await axios.get<User>("/user?ID=12345");
-    return { data, status };
+    return { data, status, type: "Success" };
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      return { status: error?.status, error: error };
+      return { status: error?.status, error: error, type: "Failure" };
     } else {
       throw error;
     }
@@ -26,11 +27,16 @@ async function fetchUser(): Promise<FetchUserResponse | null> {
 }
 
 fetchUser().then((res) => {
-  // Property 'data' does not exist on type '{ status?: number | undefined; error: unknown; }'
-  res?.data;
-
-  // Property 'error' does not exist on type '{ status?: number | undefined; data: User; }'
-  res?.error;
-
-  res?.status;
+  switch (res?.type) {
+    case "Success":
+      res.data;
+      res.status;
+      break;
+    case "Failure":
+      res.error;
+      res.status;
+      break;
+    default:
+      console.log("不正なタイプ");
+  }
 });
