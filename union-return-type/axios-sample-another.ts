@@ -13,6 +13,7 @@ type FetchUserResponse = {
 
 async function fetchUser(): Promise<FetchUserResponse | null> {
   try {
+    // urlが存在しないので、実際には実行できません
     const { data, status } = await axios.get<User>("/user?ID=12345");
     return { data, status };
   } catch (error) {
