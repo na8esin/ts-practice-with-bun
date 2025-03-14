@@ -1,13 +1,25 @@
-const a = ['b', 'z', 'a'] // 増えたり、減ったりする側
+function intersection(a: string[], b: string[]) {
+  const c = a.filter((x) => b.includes(x))
+  console.log(c);
+}
 
-const b = ['b', 'y', 'a'] // こっちは初期値から変わらない
+function deleted(a: string[], b: string[]) {
+  const c = a.filter((x) => !b.includes(x))
+  console.log(c);
+  return c;
+}
 
-const c = a.filter((x) => b.includes(x))
+function added(a: string[], b: string[]) {
+  const c = b.filter((x) => !a.includes(x))
+  console.log(c);
+  return c;
+}
 
-console.log(c) // [ "b", "a" ]
 
-const c2 = b.filter((x) => a.includes(x))
+// 引数をひっくり返しても一緒
+intersection(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "b", "a" ]
+intersection(['b', 'y', 'a'], ['b', 'z', 'a']) // [ "b", "a" ]
 
-console.log(c2) // [ "b", "a" ]
-
-const c3 = b.filter((x) => ['b','d', 'z', 'a'].includes(x))
+// 追加されたか、削除されたかを判別する
+const addedIds = added(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "y" ]
+const deletedIds = deleted(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "z" ]
