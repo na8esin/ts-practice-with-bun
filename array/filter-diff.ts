@@ -16,10 +16,10 @@ function added(a: string[], b: string[]) {
 }
 
 
-// 引数をひっくり返しても一緒
+// そのまんまの要素をfilterする。引数をひっくり返しても一緒
 intersection(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "b", "a" ]
 intersection(['b', 'y', 'a'], ['b', 'z', 'a']) // [ "b", "a" ]
 
 // 追加されたか、削除されたかを判別する
-const addedIds = added(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "y" ]
-const deletedIds = deleted(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "z" ]
+added(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "y" ]
+deleted(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "z" ]
