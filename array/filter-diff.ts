@@ -30,3 +30,8 @@ deleted(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "z" ]
 console.log('---- addedのバリエーション ---');
 added(['a'], ['b'])
 added(['a'], []) // []
+
+console.log('---- deletedのバリエーション ---');
+deleted(['a'], ['b']) // [ "a" ]
+deleted(['a'], []) // [ "a" ]
+deleted([], ['a']) // []
