@@ -20,6 +20,13 @@ function added(a: string[], b: string[]) {
 intersection(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "b", "a" ]
 intersection(['b', 'y', 'a'], ['b', 'z', 'a']) // [ "b", "a" ]
 
+console.log('-------');
+
 // 追加されたか、削除されたかを判別する
 added(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "y" ]
 deleted(['b', 'z', 'a'], ['b', 'y', 'a']) // [ "z" ]
+
+
+console.log('---- addedのバリエーション ---');
+added(['a'], ['b'])
+added(['a'], []) // []
